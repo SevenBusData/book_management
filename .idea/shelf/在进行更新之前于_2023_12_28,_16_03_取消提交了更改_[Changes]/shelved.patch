@@ -1,0 +1,154 @@
+Index: backEnd/target/classes/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backEnd/target/classes/application.yml b/backEnd/target/classes/application.yml
+deleted file mode 100644
+--- a/backEnd/target/classes/application.yml	(revision 443b92e0ca4edf7b618ad2bdc47dca6d99dc6767)
++++ /dev/null	(revision 443b92e0ca4edf7b618ad2bdc47dca6d99dc6767)
+@@ -1,58 +0,0 @@
+-# 服务端口配置
+-server:
+-  port: 5000
+-
+-# 数据库连接配置
+-spring:
+-  servlet:
+-    multipart:
+-      max-file-size: 100MB
+-      max-request-size: 200MB
+-  datasource:
+-    driver-class-name: com.mysql.cj.jdbc.Driver
+-    url: jdbc:mysql://47.236.37.1:3306/books_management?useSSL=false&serverTimezone=UTC
+-    username: parter
+-    password: COMEONboy123.
+-
+-#开启驼峰命名规范自动映射
+-mybatis:
+-  configuration:
+-    map-underscore-to-camel-case: true
+-
+-# mybatis-plus配置
+-mybatis-plus:
+-  type-aliases-package: com.bookManage.domain
+-  mapper-locations: classpath:/mapper/*.xml
+-  configuration:
+-    map-underscore-to-camel-case: true
+-    cache-enabled: false
+-    global-config:
+-      db-config:
+-        id-type: auto
+-
+-# log.info日志输出
+-logging:
+-  level:
+-    com:
+-      sky:
+-        mapper: debug
+-        service: info
+-        controller: info
+-
+-# token令牌设置
+-books:
+-  jwt:
+-    # 设置jwt签名加密时使用的秘钥
+-    admin-secret-key: itcast
+-    # 设置jwt过期时间
+-    admin-ttl: 7200000
+-    # 设置前端传递过来的令牌名称
+-    admin-token-name: token
+-
+-upload:
+-  path:
+-    image: D:\books_management\backEnd\src\main\resources\static\img\user
+-#    image:
+-
+-
+-
+Index: backEnd/target/classes/mapper/CommentMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backEnd/target/classes/mapper/CommentMapper.xml b/backEnd/target/classes/mapper/CommentMapper.xml
+deleted file mode 100644
+--- a/backEnd/target/classes/mapper/CommentMapper.xml	(revision 443b92e0ca4edf7b618ad2bdc47dca6d99dc6767)
++++ /dev/null	(revision 443b92e0ca4edf7b618ad2bdc47dca6d99dc6767)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+-
+-<mapper namespace="com.bookManage.mapper.CommentMapper">
+-    <resultMap type="com.bookManage.domain.vo.SelectCommentVO" id="booksComment" autoMapping="true">
+-        <!-- 只展示了部分标签内容，一对多关联映射 -->
+-        <collection property="book" ofType="com.bookManage.domain.entity.Book" autoMapping="true">
+-            <id property="bookId" column="bid"/>
+-        </collection>
+-    </resultMap>
+-
+-    <select id="selectCommentsWithUserInfo" parameterType="int" resultMap="booksComment">
+-        SELECT u.username, c.comment_content, c.comment_status, s.portrait,b.book_id bid,b.*
+-        FROM comment c
+-                 JOIN user u ON c.user_id = u.user_id
+-                 JOIN student s ON u.student_id = s.student_id
+-                 JOIN book b ON c.book_id = b.book_id
+-        WHERE c.book_id = #{bookId}
+-    </select>
+-</mapper>
+Index: backEnd/target/classes/mapper/BookMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backEnd/target/classes/mapper/BookMapper.xml b/backEnd/target/classes/mapper/BookMapper.xml
+deleted file mode 100644
+--- a/backEnd/target/classes/mapper/BookMapper.xml	(revision 443b92e0ca4edf7b618ad2bdc47dca6d99dc6767)
++++ /dev/null	(revision 443b92e0ca4edf7b618ad2bdc47dca6d99dc6767)
+@@ -1,18 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+-<mapper namespace="com.bookManage.mapper.BookMapper">
+-    <select id="searchList" resultType="com.bookManage.domain.entity.Book">
+-        select * from book
+-        <where>
+-            <if test="bookName!= null and bookName!= ''">
+-                book_name like concat('%',#{bookName},'%')
+-            </if>
+-            <if test="bookAuthor!= null and bookAuthor!= ''">
+-                and book_author like concat('%',#{bookAuthor},'%')
+-            </if>
+-            <if test="bookDesc!= null and bookDesc!= ''">
+-                and book_desc like concat('%',#{bookDesc},'%')
+-            </if>
+-        </where>
+-    </select>
+-</mapper>
+Index: backEnd/target/classes/mapper/BorrowMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backEnd/target/classes/mapper/BorrowMapper.xml b/backEnd/target/classes/mapper/BorrowMapper.xml
+deleted file mode 100644
+--- a/backEnd/target/classes/mapper/BorrowMapper.xml	(revision 443b92e0ca4edf7b618ad2bdc47dca6d99dc6767)
++++ /dev/null	(revision 443b92e0ca4edf7b618ad2bdc47dca6d99dc6767)
+@@ -1,18 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+-<mapper namespace="com.bookManage.mapper.BorrowMapper">
+-    <select id="selectMyBorrow" resultType="com.bookManage.domain.vo.MyBorrowVO">
+-        select
+-            b.book_id, b.book_author, b.book_publish, b.book_number, b.book_name, t.book_type, b.book_desc, b.book_img, bo.borrow_start_time, bo.borrow_end_time
+-        from book b, book_type t, borrow bo
+-        where (b.book_id,bo.borrow_id) in (
+-            select book_id,borrow_id from borrow
+-            <where>
+-                borrow_student_number = #{studentNumber}
+-                           and borrow_status = 1
+-            </where>
+-        )
+-        and b.book_typeid = t.book_type_id
+-        and bo.borrow_student_number = #{studentNumber}
+-    </select>
+-</mapper>

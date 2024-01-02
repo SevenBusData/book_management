@@ -1,0 +1,131 @@
+Index: backEnd/src/main/java/com/seven/service/impl/BookServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.seven.service.impl;\n\nimport ch.qos.logback.core.joran.util.beans.BeanUtil;\nimport com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;\nimport com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;\nimport com.github.pagehelper.Page;\nimport com.github.pagehelper.PageHelper;\nimport com.seven.domain.dto.SearchDTO;\nimport com.seven.domain.entity.Book;\nimport com.seven.domain.pojo.PageBean;\nimport com.seven.mapper.BookMapper;\nimport com.seven.service.BookService;\nimport com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;\nimport org.springframework.beans.BeanUtils;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.stereotype.Service;\n\nimport java.util.List;\n\n/**\n * <p>\n * 图书表 服务实现类\n * </p>\n *\n * @author wjh\n * @since 2023-12-04\n */\n@Service\npublic class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements BookService {\n    @Autowired\n    private BookMapper bookMapper;\n\n    @Override\n    public List<Book> searchPage(SearchDTO searchDTO) {\n        Book book = new Book();\n        BeanUtils.copyProperties(searchDTO,book);\n\n        List<Book> bookList = bookMapper.searchList(book);\n\n        return bookList;\n    }\n\n    @Override\n    public List<Book> selectByTypeId(Integer typeId) {\n        List<Book> lists = bookMapper.selectList(new QueryWrapper<Book>().eq(\"book_typeId\",typeId));\n        return lists;\n    }\n\n    @Override\n    public PageBean nextPage(Integer currentPage) {\n        PageHelper.startPage(currentPage, 4);\n        Book book = new Book();\n\n        List<Book> bookList = bookMapper.selectList(new LambdaQueryWrapper<>());\n        Page<Book> pages = (Page<Book>) bookList;\n\n        PageBean pageBean = new PageBean(pages.getTotal(),pages.getResult());\n        return pageBean;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backEnd/src/main/java/com/seven/service/impl/BookServiceImpl.java b/backEnd/src/main/java/com/seven/service/impl/BookServiceImpl.java
+--- a/backEnd/src/main/java/com/seven/service/impl/BookServiceImpl.java	(revision 947a3e911a17e0e3b0335fb23d3788a505f7e03d)
++++ b/backEnd/src/main/java/com/seven/service/impl/BookServiceImpl.java	(date 1703670712998)
+@@ -1,6 +1,5 @@
+ package com.seven.service.impl;
+ 
+-import ch.qos.logback.core.joran.util.beans.BeanUtil;
+ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+ import com.github.pagehelper.Page;
+@@ -15,6 +14,7 @@
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
+ 
++import java.util.ArrayList;
+ import java.util.List;
+ 
+ /**
+@@ -36,7 +36,6 @@
+         BeanUtils.copyProperties(searchDTO,book);
+ 
+         List<Book> bookList = bookMapper.searchList(book);
+-
+         return bookList;
+     }
+ 
+Index: backEnd/target/classes/mapper/CommentMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backEnd/target/classes/mapper/CommentMapper.xml b/backEnd/target/classes/mapper/CommentMapper.xml
+deleted file mode 100644
+--- a/backEnd/target/classes/mapper/CommentMapper.xml	(revision 947a3e911a17e0e3b0335fb23d3788a505f7e03d)
++++ /dev/null	(revision 947a3e911a17e0e3b0335fb23d3788a505f7e03d)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+-
+-<mapper namespace="com.seven.mapper.CommentMapper">
+-    <resultMap type="com.seven.domain.vo.SelectCommentVO" id="booksComment" autoMapping="true">
+-        <!-- 只展示了部分标签内容，一对多关联映射 -->
+-        <collection property="book" ofType="book" autoMapping="true">
+-            <id property="bookId" column="bid"/>
+-        </collection>
+-    </resultMap>
+-
+-    <select id="selectCommentsWithUserInfo" parameterType="int" resultMap="booksComment">
+-        SELECT u.username, c.comment_content, c.comment_status, s.portrait,b.book_id bid,b.*
+-        FROM comment c
+-                 JOIN user u ON c.user_id = u.user_id
+-                 JOIN student s ON u.student_id = s.student_id
+-                 JOIN book b ON c.book_id = b.book_id
+-        WHERE c.book_id = #{bookId}
+-    </select>
+-</mapper>
+Index: backEnd/target/classes/mapper/BorrowMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backEnd/target/classes/mapper/BorrowMapper.xml b/backEnd/target/classes/mapper/BorrowMapper.xml
+deleted file mode 100644
+--- a/backEnd/target/classes/mapper/BorrowMapper.xml	(revision 947a3e911a17e0e3b0335fb23d3788a505f7e03d)
++++ /dev/null	(revision 947a3e911a17e0e3b0335fb23d3788a505f7e03d)
+@@ -1,18 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+-<mapper namespace="com.seven.mapper.BorrowMapper">
+-    <select id="selectMyBorrow" resultType="com.seven.domain.vo.MyBorrowVO">
+-        select
+-            b.book_id, b.book_author, b.book_publish, b.book_number, b.book_name, t.book_type, b.book_desc, b.book_img, bo.borrow_start_time, bo.borrow_end_time
+-        from book b, book_type t, borrow bo
+-        where (b.book_id,bo.borrow_id) in (
+-            select book_id,borrow_id from borrow
+-            <where>
+-                borrow_student_number = #{studentNumber}
+-                           and borrow_status = 1
+-            </where>
+-        )
+-        and b.book_typeid = t.book_type_id
+-        and bo.borrow_student_number = #{studentNumber}
+-    </select>
+-</mapper>
+Index: backEnd/src/main/resources/mapper/CommentMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\n\n<mapper namespace=\"com.seven.mapper.CommentMapper\">\n    <resultMap type=\"com.seven.domain.vo.SelectCommentVO\" id=\"booksComment\" autoMapping=\"true\">\n        <!-- 只展示了部分标签内容，一对多关联映射 -->\n        <collection property=\"book\" ofType=\"book\" autoMapping=\"true\">\n            <id property=\"bookId\" column=\"bid\"/>\n        </collection>\n    </resultMap>\n\n    <select id=\"selectCommentsWithUserInfo\" parameterType=\"int\" resultMap=\"booksComment\">\n        SELECT u.username, c.comment_content, c.comment_status, s.portrait,b.book_id bid,b.*\n        FROM comment c\n                 JOIN user u ON c.user_id = u.user_id\n                 JOIN student s ON u.student_id = s.student_id\n                 JOIN book b ON c.book_id = b.book_id\n        WHERE c.book_id = #{bookId}\n    </select>\n</mapper>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backEnd/src/main/resources/mapper/CommentMapper.xml b/backEnd/src/main/resources/mapper/CommentMapper.xml
+--- a/backEnd/src/main/resources/mapper/CommentMapper.xml	(revision 947a3e911a17e0e3b0335fb23d3788a505f7e03d)
++++ b/backEnd/src/main/resources/mapper/CommentMapper.xml	(date 1703515237891)
+@@ -4,7 +4,7 @@
+ <mapper namespace="com.seven.mapper.CommentMapper">
+     <resultMap type="com.seven.domain.vo.SelectCommentVO" id="booksComment" autoMapping="true">
+         <!-- 只展示了部分标签内容，一对多关联映射 -->
+-        <collection property="book" ofType="book" autoMapping="true">
++        <collection property="book" ofType="com.seven.domain.entity.Book" autoMapping="true">
+             <id property="bookId" column="bid"/>
+         </collection>
+     </resultMap>
+Index: backEnd/src/main/java/com/seven/controller/ImageUploadController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.seven.controller;\n\nimport com.seven.domain.dto.MultipartFileDTO;\nimport com.seven.domain.pojo.Result;\nimport com.seven.service.StudentService;\nimport com.seven.utils.ContentTypeUtil;\nimport lombok.extern.slf4j.Slf4j;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.beans.factory.annotation.Value;\nimport org.springframework.core.io.DefaultResourceLoader;\nimport org.springframework.core.io.Resource;\nimport org.springframework.core.io.ResourceLoader;\nimport org.springframework.web.bind.annotation.*;\nimport org.springframework.web.multipart.MultipartFile;\n\nimport java.io.File;\nimport java.io.FileInputStream;\nimport java.io.IOException;\n\n/**\n * @author :Wjh\n * @since :2023/12/12 10:26\n */\n\n@Slf4j\n@RestController\n@RequestMapping(\"/image\")\n@CrossOrigin\npublic class ImageUploadController {\n    ResourceLoader resourceLoader = new DefaultResourceLoader();\n    Resource resource = resourceLoader.getResource(\"classpath:static/img/user\");\n    @Value(\"${upload.path.image}\")\n    private String uploadPath;\n    @Autowired\n    private StudentService studentService;\n    private String targetPath ;\n\n    {\n        try {\n            targetPath = resource.getFile().getPath();\n        } catch (IOException e) {\n            throw new RuntimeException(e);\n        }\n    }\n\n    /**\n     * 上传图片\n     * @param studentNumber\n     * @param file\n     * @return\n     */\n    @PostMapping(\"/upload\")\n    public Result uploadImage(@RequestBody @RequestParam(required = true) String studentNumber,\n                              @RequestParam(value = \"file\",required = true) MultipartFile file) {\n        String tempPath = null;\n        String filePath = null;\n        String fileName = null;\n        try {\n            fileName = file.getOriginalFilename();\n            // 获取文件名\n            // 指定保存路径\n            filePath = uploadPath  + \"\\\\\" + fileName;\n            tempPath = targetPath  + \"\\\\\" + fileName;\n\n            log.info(\"上传文件路径：\" + filePath);\n            log.info(\"上传文件路径：\" + tempPath);\n\n            file.transferTo(new File(filePath));\n\n            File pdfFile = new File(filePath);\n            FileInputStream fileInputStream = new FileInputStream(pdfFile);\n            MultipartFile targetFile = new MultipartFileDTO(pdfFile.getName(), pdfFile.getName(),\n                    ContentTypeUtil.getContentType(fileName), fileInputStream);\n\n            targetFile.transferTo(new File(tempPath));\n\n            String path = \"http://localhost:5000/image/user/\" + fileName;\n            studentService.uploadImage(studentNumber,path);\n\n            // 保存文件到本地\n            return Result.success(\"上传成功\");\n        } catch (Exception e) {\n            log.error(e.getMessage());\n            return Result.error(\"上传失败\");\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backEnd/src/main/java/com/seven/controller/ImageUploadController.java b/backEnd/src/main/java/com/seven/controller/ImageUploadController.java
+--- a/backEnd/src/main/java/com/seven/controller/ImageUploadController.java	(revision 947a3e911a17e0e3b0335fb23d3788a505f7e03d)
++++ b/backEnd/src/main/java/com/seven/controller/ImageUploadController.java	(date 1703667197276)
+@@ -59,8 +59,8 @@
+             fileName = file.getOriginalFilename();
+             // 获取文件名
+             // 指定保存路径
+-            filePath = uploadPath  + "\\" + fileName;
+-            tempPath = targetPath  + "\\" + fileName;
++            filePath = "/Users/seven/Desktop/book_management/backEnd/src/main/resources/static/img/use/r" + fileName;
++            tempPath = "/Users/seven/Desktop/book_management/backEnd/target/classes/static/img/user/" + fileName;
+ 
+             log.info("上传文件路径：" + filePath);
+             log.info("上传文件路径：" + tempPath);

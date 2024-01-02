@@ -1,0 +1,204 @@
+<changelist name="在进行更新之前于_2023_12_27,_22_12_取消提交了更改_[Changes]" date="1703686358710" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2023_12_27,_22_12_取消提交了更改_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="在进行更新之前于 2023/12/27, 22:12 取消提交了更改 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/mapper/CommentMapper.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/controller/BorrowController.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/controller/StudentController.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/utils/JwtUtil.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/constant/JwtClaimsConstant.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/exception/LoginFailedException.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/service/impl/BorrowServiceImpl.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/mapper/UserMapper.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/service/impl/CommentServiceImpl.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/domain/entity/Borrow$BorrowBuilder.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/domain/entity/User.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/exception/PasswordEditFailedException.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/domain/entity/Student.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/service/CommentService.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/domain/entity/Borrow.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/controller/UserController.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/controller/CommentController.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/BackEndApplication.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/exception/BaseException.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/domain/pojo/Result.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/domain/entity/Role.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/exception/PasswordErrorException.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/service/UserService.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/domain/entity/Comment.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/service/BorrowService.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/exception/AccountNotFoundException.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/exception/AccountLockedException.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/constant/MessageConstant.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/exception/DeletionNotAllowedException.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/service/StudentService.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/domain/dto/BorrowDTO$BorrowDTOBuilder.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/domain/dto/BorrowDTO.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/service/impl/StudentServiceImpl.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/constant/StatusConstant.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/mapper/BorrowMapper.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/constant/PasswordConstant.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/constant/AutoFillConstant.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/service/impl/UserServiceImpl.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/exception/UserNotLoginException.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backEnd/target/classes/com/seven/mapper/StudentMapper.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>
